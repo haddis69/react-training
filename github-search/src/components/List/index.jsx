@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import "./index.css";
 export default class List extends Component {
   render() {
+    const {users,isFirst,isLoading,err}=this.props;
     return (
       <div className="row">
-        {this.props.users.map((user) => {
+        {
+          isFirst ? <h2>Enter name to search</h2> :
+          isLoading ? <h2>Loading...</h2> :
+          err?<h2 style={{color:'red'}}>{err}</h2>:
+        users.map((user) => {
           return (
             <div className="card" key={user.id}>
               <a href={user.html_url} target="_blank" rel="noreferrer">

@@ -3,10 +3,11 @@ import axios from 'axios'
 import './index.css'
 export default class Search extends Component {
   search=()=>{
+  this.props.updateAppState({isFirst:false,isLoading:true})
   const {keyWordElement:{value}}=this;
     axios.get(`https://api.github.com/search/users?q=${value}`).then(
-      response=>{this.props.saveUsers(response.data.items)},
-      error=>{console.log('error',error)}
+      response=>{this.props.updateAppState({isLoading:false,users:response.data.items})},
+      error=>{this.props.updateAppState({err:error.message,isLoading:false})}
     )
   }
   render() {
