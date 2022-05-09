@@ -8,7 +8,7 @@ export default class Footer extends Component {
     return (
       <div className="todo-footer">
         <label>
-          <input type="checkbox" onChange={(event)=>this.checkAll(event)}/>
+          <input type="checkbox" onChange={(event)=>this.checkAll(event)} checked={this.props.countDone===this.props.todoLength&&this.props.countDone!==0}/>
         </label>
         <span>
           <span>已完成{this.props.countDone}</span> / 全部{this.props.todoLength}

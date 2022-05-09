@@ -26,7 +26,7 @@ export default class Item extends Component {
       //进入或者离开谁的时候，谁就触发这个动态的backgroundColor切换这件事，与其它li无关
       <li style={{backgroundColor:this.state.mouse?'#ddd':'#fff'}} onMouseEnter={()=>this.handleMouse(true)} onMouseLeave={()=>this.handleMouse(false)}>
         <label>
-          <input type="checkbox" defaultChecked={done} onChange={(event)=>this.handleCheck(event,id)}/>
+          <input type="checkbox" checked={done} onChange={(event)=>this.handleCheck(event,id)}/>
           <span>{name}</span>
         </label>
         {/**这里同理 */}
