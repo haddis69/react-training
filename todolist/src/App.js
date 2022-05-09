@@ -17,13 +17,26 @@ export default class App extends Component{
       todos:newTodos
     })
   }
+  //这个函数给item用于往App传数据
+  updateTodo=(id,done)=>{
+    const {todos}=this.state;
+    //在state里修改done(是否被勾选)的值
+    const newTodos = todos.map(todoObj=>{
+      if(todoObj.id===id) return {...todoObj,done}
+      else return todoObj
+    })
+    this.setState({
+      todos:newTodos
+    })
+  }
+
   render(){
     const {todos}=this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos}/>
+          <List todos={todos} updateTodo={this.updateTodo}/>
           <Footer />
         </div>
       </div>
