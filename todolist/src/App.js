@@ -29,15 +29,51 @@ export default class App extends Component{
       todos:newTodos
     })
   }
-
+  countDone=()=>{
+    const {todos}=this.state;
+    let newTodos = todos.filter(todoObj=>{
+      return todoObj.done===true;
+    })
+    return newTodos.length;
+  }
+  deleteTodo=(id)=>{
+    const {todos}=this.state;
+    const newTodos=todos.filter(todoObj=>{
+      return todoObj.id !== id;
+    })
+    this.setState({
+      todos:newTodos
+    })
+  }
+  handleAllCheck=(done)=>{
+    const {todos}=this.state;
+    const newTodos=todos.map(todoObj=>{
+      if(todoObj.done!==done){
+        todoObj.done=done
+      }
+      return todoObj
+    })
+    this.setState({
+      todos:newTodos
+    })
+  }
+  deleteAllDone=()=>{
+    const {todos}=this.state;
+    const newTodos=todos.filter(todoObj=>{
+      return todoObj.done ===false;
+    })
+    this.setState({
+      todos:newTodos
+    })
+  }
   render(){
     const {todos}=this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos} updateTodo={this.updateTodo}/>
-          <Footer />
+          <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo}/>
+          <Footer countDone={this.countDone()} todoLength={todos.length} handleAllCheck={this.handleAllCheck} deleteAllDone={this.deleteAllDone}/>
         </div>
       </div>
     );

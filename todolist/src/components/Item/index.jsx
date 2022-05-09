@@ -12,6 +12,12 @@ export default class Item extends Component {
     //祖辈组件传过来的 updateTodo=(id,done)=>{}
     this.props.updateTodo(id,event.target.checked);
   }
+  //deleteTodo=(id)=>{}
+  handleDelete=(id)=>{
+    if(window.confirm('你确定删除吗')){
+      this.props.deleteTodo(id);
+    }
+  }
   render() {
     const {id,name,done} = this.props
     return (
@@ -24,7 +30,7 @@ export default class Item extends Component {
           <span>{name}</span>
         </label>
         {/**这里同理 */}
-        <button className="btn btn-danger" style={{display:this.state.mouse?'block':'none'}}>
+        <button onClick={()=>this.handleDelete(id)} className="btn btn-danger" style={{display:this.state.mouse?'block':'none'}}>
           删除
         </button>
       </li>
