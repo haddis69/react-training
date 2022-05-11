@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {createIncrementAction,createDecrementAction,createIncrementAsyncAction} from '../../redux/count_action'
+import {createIncrementAction,createDecrementAction,createIncrementAsyncAction} from '../../redux/actions/count'
 import {connect} from 'react-redux'
 //#region
 //components文件夹后期已经在优化中被合并到了容器组件(container)中
@@ -67,7 +67,8 @@ class Count extends Component {
     render() {
       return (
         <div>
-          <h1>当前求和为:{this.props.count}</h1>
+          <h2>我是Count组件,下方人数为:{this.props.personCounts}</h2>
+          <h4>当前求和为:{this.props.count}</h4>
           <br></br>
           <select ref={(c) => (this.selectNum = c)}>
             <option value={1}>1</option>
@@ -84,7 +85,7 @@ class Count extends Component {
     }
   }
 export default connect(
-    state=>({count:state}),
+    state=>({count:state.count,personCounts:state.persons.length}),
     {
         increment:createIncrementAction,
         decrement:createDecrementAction,
