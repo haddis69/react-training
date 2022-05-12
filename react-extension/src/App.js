@@ -1,9 +1,11 @@
-import Demo from "./components/1_setState";
+// import Demo from "./components/1_setState";
+import Demo from "./components/2_lazyLoad";
+import { BrowserRouter } from "react-router-dom";
 function App() {
   return (
-    <div>
-      <Demo a={1}/>
-    </div>
+    <BrowserRouter>
+        <Demo />
+    </BrowserRouter>
   );
 }
 
