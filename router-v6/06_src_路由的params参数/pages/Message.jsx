@@ -13,17 +13,12 @@ export default function Message() {
         {messages.map((m) => {
           return (
             <li key={m.id}>
-              <Link
-                to="detail"
-                state={{ id: m.id, title: m.title, content: m.content }}
-              >
-                {m.title}
-              </Link>
+              <Link to={`detail/${m.id}/${m.title}/${m.content}`}>{m.title}</Link>
             </li>
           );
         })}
       </ul>
-      <Outlet />
+      <Outlet/>
     </div>
   );
 }
