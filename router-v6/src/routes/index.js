@@ -5,13 +5,13 @@ export const routes=[
     {
         path:'/about',
         element:<About/>
-    },
-    {
-        path:'/home',
+      },
+      {
+        path:'home',
         element:<Home/>
-    },
-    {
+      },
+      {
         path:'/',
-        element:<Navigate to={<About/>}/>
-    }
+        element:<Navigate to='/about'/>
+      }
 ]
