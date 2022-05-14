@@ -4,7 +4,7 @@ import List from "./components/List";
 import Footer from "./components/Footer";
 import "./App.css";
 export default class App extends Component{
-  state={todos:[
+  state=JSON.parse(localStorage.getItem('todos'))||{todos:[
     {id:'001',name:'吃饭',done:true},
     {id:'002',name:'睡觉',done:true},
     {id:'003',name:'打代码',done:false}
@@ -65,6 +65,9 @@ export default class App extends Component{
     this.setState({
       todos:newTodos
     })
+  }
+  componentDidUpdate(){
+    localStorage.setItem('todos',JSON.stringify(this.state));
   }
   render(){
     const {todos}=this.state
